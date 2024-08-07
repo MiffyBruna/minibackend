@@ -16,7 +16,13 @@ console.log("OpenAI API key loaded successfully.");
 
 const openai = new OpenAI({ apiKey });
 
-app.use(cors());
+// CORS configuration
+const corsOptions = {
+  origin: 'http://localhost:4200',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
 app.use(express.json()); // Parse JSON bodies
 
 app.post('/chat', async (req, res) => {
